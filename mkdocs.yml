@@ -1,0 +1,105 @@
+site_name: Hugging Face Agents Course — Notes & Experiments
+site_description: Personal notes and experiments following the Hugging Face Agents Course
+site_author: Juan Camilo Macias
+site_url: https://jcphysica5.github.io/hf-agents-systems-notes/
+repo_url: https://github.com/jcphysica5/hf-agents-systems-notes
+repo_name: jcphysica5/hf-agents-systems-notes
+
+theme:
+  name: material
+  font:
+    text: Montserrat
+    code: Red Hat Mono
+  icon:
+    logo: material/robot-excited
+  favicon: assets/favicon.ico
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.footer
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - search.highlight
+    - search.suggest
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: deep purple
+      accent: amber
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: deep purple
+      accent: amber
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - css/custom.css
+
+nav:
+  - Home: index.md
+  - Unit 0 — Welcome & Setup:
+      - Overview: unit0/index.md
+  - Unit 1 — Agent Fundamentals:
+      - Overview: unit1/index.md
+      - What is an Agent?: unit1/what-is-an-agent.md
+      - LLMs & the Model Family: unit1/llms-and-models.md
+      - Tools & Actions: unit1/tools-and-actions.md
+      - Thoughts, Actions & Observations: unit1/thoughts-actions-observations.md
+  - Unit 2 — Agent Frameworks:
+      - Overview: unit2/index.md
+      - smolagents: unit2/smolagents.md
+      - LlamaIndex: unit2/llamaindex.md
+      - LangGraph: unit2/langgraph.md
+  - Unit 3 — Agentic RAG:
+      - Overview: unit3/index.md
+  - Unit 4 — Capstone Project:
+      - Overview: unit4/index.md
+  - Bonus:
+      - Fine-tuning for Function Calling: bonus/unit1-finetuning.md
+      - Observability & Evaluation: bonus/unit2-observability.md
+      - Agents in Games (Pokémon): bonus/unit3-games.md
+  - Experiments:
+      - Overview: experiments/index.md

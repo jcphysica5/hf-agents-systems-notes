@@ -1,0 +1,22 @@
+/* custom tweaks */
+.md-typeset code {
+  font-size: .95em;
+}
+
+/* Notebook embed helper */
+.notebook-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  padding: .3em .8em;
+  border-radius: 4px;
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color) !important;
+  font-weight: 600;
+  text-decoration: none !important;
+  font-size: .85em;
+}
+
+.notebook-link:hover {
+  background: var(--md-accent-fg-color);
+}
