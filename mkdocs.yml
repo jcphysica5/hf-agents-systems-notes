@@ -88,6 +88,7 @@ nav:
       - LLMs & the Model Family: unit1/llms-and-models.md
       - Tools & Actions: unit1/tools-and-actions.md
       - Thoughts, Actions & Observations: unit1/thoughts-actions-observations.md
+      - Dummy Agent Library: unit1/dummy-agent-library.md
   - Unit 2 — Agent Frameworks:
       - Overview: unit2/index.md
       - smolagents: unit2/smolagents.md
