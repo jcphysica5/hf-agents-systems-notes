@@ -232,4 +232,29 @@ inject the observation → repeat until `Final Answer`.
 
 ## Notes & experiments
 
-_Add your own observations, variations and experiment results here._
+To run the examples we need to set an API key for Hugging Face.
+
+![HuggingFace login](image.png)
+
+After logging into Hugging Face, go to **Settings → Billing** to make sure your account
+has Inference API access enabled (the free tier is sufficient for this course).
+
+Go to **Settings → Access Tokens** and create a new token. Select **Read** as the token
+type — this is all you need to call the Serverless Inference API. Copy the token (it starts
+with `hf_`) and store it as an environment variable:
+
+```bash
+# In your terminal / .env file
+export HF_TOKEN=hf_xxxxxxxxxxxxxxxx
+```
+
+```python
+# In a Colab notebook — use the Secrets tab (🔑 icon on the left sidebar)
+from google.colab import userdata
+import os
+os.environ["HF_TOKEN"] = userdata.get("HF_TOKEN")
+```
+
+!!! warning "Never share your token"
+    Do not paste your `HF_TOKEN` directly in a notebook you plan to share or push to GitHub.
+    Use environment variables or Colab Secrets instead.
