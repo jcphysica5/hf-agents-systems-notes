@@ -24,3 +24,9 @@ token pattern appears in the output. In the agent loop this matters because, ...
 ```
 
 Always replace in-place — do not add extra headings or wrappers around the replacement.
+
+## Proofreading docs/ files
+
+Whenever you read or edit any `.md` file under `docs/`, automatically correct spelling
+errors and improve the writing quality of any text the user has added. Keep the meaning
+and voice intact — fix typos, grammar, and awkward phrasing without changing the content.
