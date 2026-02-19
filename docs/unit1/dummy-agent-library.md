@@ -145,44 +145,12 @@ Now let's test the model:
     ```
     Paris.
     ```
+## 2. System prompt — encoding tools and the ReAct cycle
 
-## 2. System prompt — tools + ReAct format
+The system prompt is where the "agent magic" happens. It does two things:
 
-~~~python
-SYSTEM_PROMPT = """Answer the following questions as best you can. \
-You have access to the following tools:
-
-get_weather: Get the current weather in a given location
-
-The way you use the tools is by specifying a json blob.
-Specifically, this json should have an `action` key (with the name of the tool to use)
-and an `action_input` key (with the input to the tool going here).
-
-The only values that should be in the "action" field are:
-  get_weather: Get the current weather in a given location,
-               args: {{"location": {{"type": "string"}}}}
-
-example use:
-  {{ "action": "get_weather", "action_input": {{"location": "New York"}} }}
-
-ALWAYS use the following format:
-
-Question: the input question you must answer
-Thought: you should always think about one action to take. Only one action at a time.
-Action:
-```
-$JSON_BLOB
-```
-Observation: the result of the action.
-... (Thought/Action/Observation can repeat N times)
-
-You must always end with:
-Thought: I now know the final answer
-Final Answer: the final answer to the original input question
-
-Now begin! Reminder to ALWAYS use the exact characters `Final Answer:` when responding.
-"""
-~~~
+1. **Describes the available tools** (name, description, argument schema)
+2. **Instructs the model to follow the ReAct format** — Thought → Action → Observation → …
 
 !!! note "The ReAct format in this prompt"
     **ReAct** (Reasoning + Acting) structures the agent's output into three repeating steps:
