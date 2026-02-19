@@ -164,46 +164,6 @@ The system prompt is where the "agent magic" happens. It does two things:
     of this same loop inside its system prompt.
 
 
----
-
-## 1. Serverless API
-
-The HF Hub ships a free Serverless Inference API. No GPU needed:
-
-```python
-import os
-from huggingface_hub import InferenceClient
-
-# Get a READ token from https://hf.co/settings/tokens
-# Store it as the env-var HF_TOKEN (or in Colab Secrets)
-client = InferenceClient(model="moonshotai/Kimi-K2.5")
-```
-
-We use the **`chat.completions`** interface because it applies the model's chat template
-automatically:
-
-```python
-output = client.chat.completions.create(
-    messages=[
-        {"role": "user", "content": "The capital of France is"},
-    ],
-    stream=False,
-    max_tokens=1024,
-    extra_body={"thinking": {"type": "disabled"}},
-)
-print(output.choices[0].message.content)
-# Paris.
-```
-
----
-
-## 2. System prompt — encoding tools and the ReAct cycle
-
-The system prompt is where the "agent magic" happens. It does two things:
-
-1. **Describes the available tools** (name, description, argument schema)
-2. **Instructs the model to follow the ReAct format** — Thought → Action → Observation → …
-
 ~~~python
 SYSTEM_PROMPT = """Answer the following questions as best you can. \
 You have access to the following tools:
@@ -240,7 +200,7 @@ Now begin! Reminder to ALWAYS use the exact characters `Final Answer:` when resp
 """
 ~~~
 
-We then build the message list and call the API:
+We then build the message list and call the API. This list **is** the chat template — a structured sequence of role-tagged messages (`system`, `user`, `assistant`) that `InferenceClient` serialises into the exact format the model expects. The system message carries the tool schema and ReAct instructions; the user message carries the question:
 
 ```python
 messages = [
@@ -259,7 +219,7 @@ print(output.choices[0].message.content)
 
 **Typical output (but with a problem — see below):**
 
-```
+~~~
 Thought: To answer the question, I need to get the current weather in London.
 Action:
 ```json
@@ -268,7 +228,7 @@ Action:
 Observation: The current weather in London is partly cloudy with a temperature of 12°C.
 Thought: I now know the final answer.
 Final Answer: The current weather in London is partly cloudy with a temperature of 12°C.
-```
+~~~
 
 ---
 
@@ -293,6 +253,7 @@ output = client.chat.completions.create(
 )
 print(output.choices[0].message.content)
 ```
+
 
 ```
 Thought: To answer the question, I need to get the current weather in London.
